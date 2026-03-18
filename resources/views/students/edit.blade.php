@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Student</h2>
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-100 leading-tight">Edit Student</h2>
     </x-slot>
 
     <div class="py-6 px-8 max-w-lg">
@@ -8,54 +8,72 @@
             @csrf @method('PUT')
 
             <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Name</label>
+                <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Name</label>
                 <input type="text" name="name" value="{{ old('name', $student->name) }}"
-                       class="w-full border rounded px-3 py-2">
-                @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                       class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+                              placeholder-gray-400 dark:placeholder-gray-500
+                              focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400">
+                @error('name') <p class="text-red-500 dark:text-red-400 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Email</label>
+                <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Email</label>
                 <input type="email" name="email" value="{{ old('email', $student->email) }}"
-                       class="w-full border rounded px-3 py-2">
-                @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                       class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+                              placeholder-gray-400 dark:placeholder-gray-500
+                              focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400">
+                @error('email') <p class="text-red-500 dark:text-red-400 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Phone</label>
+                <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Phone</label>
                 <input type="text" name="phone" value="{{ old('phone', $student->phone) }}"
-                       class="w-full border rounded px-3 py-2">
+                       class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+                              placeholder-gray-400 dark:placeholder-gray-500
+                              focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400">
             </div>
 
             <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Course</label>
-                <select name="course_id" class="w-full border rounded px-3 py-2">
-                    <option value="">-- Select Course --</option>
+                <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Course</label>
+                <select name="course_id"
+                        class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2
+                               bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+                               focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400">
+                    <option value="" class="text-gray-400 dark:text-gray-500">-- Select Course --</option>
                     @foreach($courses as $course)
                         <option value="{{ $course->id }}"
-                            {{ old('course_id', $student->course_id) == $course->id ? 'selected' : '' }}>
+                                {{ old('course_id', $student->course_id) == $course->id ? 'selected' : '' }}
+                                class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
                             {{ $course->name }}
                         </option>
                     @endforeach
                 </select>
-                @error('course_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                @error('course_id') <p class="text-red-500 dark:text-red-400 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div class="mb-4">
-                <label class="block text-sm font-medium mb-1">Enrolled Date</label>
+                <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Enrolled Date</label>
                 <input type="date" name="enrolled_at"
                        value="{{ old('enrolled_at', $student->enrolled_at) }}"
-                       class="w-full border rounded px-3 py-2">
-                @error('enrolled_at') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                       class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+                              focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+                              [color-scheme:light] dark:[color-scheme:dark]">
+                @error('enrolled_at') <p class="text-red-500 dark:text-red-400 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div class="flex gap-2">
                 <button type="submit"
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        class="bg-blue-500 dark:bg-blue-600 text-white px-4 py-2 rounded
+                               hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors">
                     Update Student
                 </button>
                 <a href="{{ route('students.index') }}"
-                   class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">
+                   class="bg-gray-400 dark:bg-gray-600 text-white px-4 py-2 rounded
+                          hover:bg-gray-500 dark:hover:bg-gray-700 transition-colors">
                     Cancel
                 </a>
             </div>
